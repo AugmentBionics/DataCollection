@@ -7,18 +7,17 @@ wr = csv.writer(file)
 port = serial.Serial("/dev/tty.usbmodem1411",9600)
 data = []
 flex_time = []
-l = 0
 
-while(l < 10000):
-    if l <= 3000 and l >= 8000:
+while(len(data)<1400):
+    if len(data) >= 500 and len(data) <= 1000:
         flex_time.append('Flex')
+        print("FLEX")
+        
     else:
         flex_time.append('Not')
+        print("STOP")
         
     data.append(port.readline())
-    l += 1
-
-
 
 
 wr.writerow(data)
